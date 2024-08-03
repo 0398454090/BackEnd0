@@ -1,0 +1,150 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        /* Chọn phông chữ đẹp cho trang */
+        background-color: #f4f4f9;
+        /* Màu nền cho toàn bộ trang */
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 80%;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 8px;
+        /* Bo tròn các góc của container */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Thêm bóng cho container */
+    }
+    
+    h2 {
+        text-align: center;
+        color: #333;
+        /* Màu cho tiêu đề */
+        margin-bottom: 1.5rem;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        /* Xóa khoảng cách giữa các ô */
+        margin: 0 auto;
+    }
+    
+    .title {
+        font-size: 25px;
+        font-weight: 600;
+        padding-bottom: 10px;
+    }
+    
+    .table-container {
+        padding: 15px 20px;
+        ;
+    }
+    
+    th,
+    td {
+        border: 1px solid #ddd;
+        /* Đường viền nhạt cho các ô */
+        padding: 12px;
+        /* Khoảng cách bên trong các ô */
+        text-align: left;
+        /* Căn chỉnh văn bản bên trái */
+    }
+    
+    th {
+        background-color: #4CAF50;
+        /* Màu nền cho tiêu đề */
+        color: white;
+        /* Màu chữ cho tiêu đề */
+        font-weight: bold;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+        /* Màu nền cho các hàng chẵn */
+    }
+    
+    tr:hover {
+        background-color: #ddd;
+        /* Màu nền khi di chuột qua hàng */
+    }
+    
+    @media screen and (max-width: 768px) {
+        table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+            /* Cuộn ngang trên màn hình nhỏ */
+        }
+        th,
+        td {
+            padding: 10px;
+            /* Giảm padding trên thiết bị nhỏ */
+        }
+    }
+</style>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/create">Create User</a>
+
+    </div>
+
+    <div class="table-container">
+        <div class="title">List User</div>
+
+
+        <table style="width:100%">
+
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+
+            <% listUsers.forEach(function(user, index) { %>
+                <tr>
+                    <td>
+                        <%=user.id %>
+                    </td>
+                    <td>
+                        <%=user.email %>
+                    </td>
+                    <td>
+                        <%=user.name %>
+                    </td>
+                    <td>
+                        <%=user.city %>
+                    </td>
+                    <td>
+                        <a href="/update/ <%=user.id %>">Edit</a>
+                        <form action="delete-user/<%=user.id %>" method="post">
+                            <button>Delete</button>
+
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>
