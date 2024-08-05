@@ -87,8 +87,7 @@ const postDeleteUser = async(req, res) => {
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).send("Invalid user ID");
         }
-
-        let user = await getUserById(userId);
+        let user = await User.findById(userId).exec();
         if (!user) {
             return res.status(404).send("User not found");
         }
@@ -108,7 +107,11 @@ const postHandleRemoveUser = async(req, res) => {
             return res.status(400).send("Invalid user ID");
         }
 
-        await deleteUserById(id);
+        // await deleteUserById(id);
+        let results = await User.deleteOne({
+            _id: id
+        })
+        console.log('>>> result: ', results)
         res.redirect('/');
     } catch (error) {
         console.error("Error handling remove user:", error);
