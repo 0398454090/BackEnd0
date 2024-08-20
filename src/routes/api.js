@@ -11,7 +11,6 @@ routerAPI.post('/users', postCreateUserAPI);
 
 routerAPI.put('/users', postUpdateUser);
 
-
 routerAPI.delete('/users', deleteUsersAPI);
 
 module.exports = routerAPI;
