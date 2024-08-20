@@ -65,6 +65,7 @@ const portUploadSingleFileApi = async(req, res) => {
     }
 
     let result = await uploadSingleFile(req.files.image);
+
     return res.status(200).json({
         EC: 0,
         data: result
