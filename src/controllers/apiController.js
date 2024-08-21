@@ -1,5 +1,5 @@
 const User = require('../models/users');
-const { uploadSingleFile, uploadMultipleFiles, createCustomerService } = require('../services/fileService');
+const { uploadSingleFile, uploadMultipleFiles } = require('../services/fileService');
 
 
 const getUsersApi = async(req, res) => {
