@@ -51,11 +51,23 @@ const deleteACustomerService = async(id) => {
     }
 }
 
+const deleteArrayCustomersService = async(ids) => {
+
+    try {
+        let result = await Customer.deleteMany({ _id: { $in: ids } });
+        return result;
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+}
+
 
 module.exports = {
     createCustomerService,
     createCustomerArrayService,
     getAllCustomerService,
     putUpdateCustomerService,
-    deleteACustomerService
+    deleteACustomerService,
+    deleteArrayCustomersService
 }

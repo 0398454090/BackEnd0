@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const mongoose_delete = require('mongoose-delete')
-    //shape data
+const mongoose_delete = require('mongoose-delete');
+//shape data
 const customerSchema = new mongoose.Schema({
 
     name: {
@@ -13,8 +13,16 @@ const customerSchema = new mongoose.Schema({
     image: String,
     description: String
 
-}, { timestamps: true });
 
+}, {
+    timestamps: true, //CreateAt, updateAt
+    // statics: {
+    //     findByHoiDanIT(name) {
+    //         return this.find({ name: new RegExp(name, 'i') });
+    //     },
+    // }
+});
+//override all method   
 customerSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
 
 const Customer = mongoose.model('customer', customerSchema);
