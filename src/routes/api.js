@@ -31,4 +31,12 @@ routerAPI.get('/info', (req, res) => {
     })
 });
 
+
+routerAPI.get('/info/:name/:address', (req, res) => {
+    console.log(">>> check params: ", req.params)
+    return res.status(200).json({
+        data: req.params
+    })
+});
+
 module.exports = routerAPI;
