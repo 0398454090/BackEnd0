@@ -1,5 +1,5 @@
 const { uploadSingleFile } = require("../services/fileService");
-const { createCustomerService, createCustomerArrayService, putUpdateCustomerService, deleteACustomerService, deleteArrayCustomersService } = require("../services/CustomerService")
+const { createCustomerService, createCustomerArrayService, putUpdateCustomerService, deleteACustomerService, deleteArrayCustomersService, getAllCustomerService } = require("../services/CustomerService")
 const Customer = require("../models/customer")
 
 module.exports = {
@@ -46,11 +46,20 @@ module.exports = {
         }
     },
     getAllCustomer: async(req, res) => {
-        let results = await Customer.find({});
+        console.log(req.query)
+
+        let limit = req.query.limit;
+        let page = req.query.page;
+        let result = "";
+
+        if (limit && page) {
+            result = await getAllCustomerService(limit, page);
+        } else
+            result = await getAllCustomerService();
 
         return res.status(200).json({
-            errorCode: 0,
-            data: results
+            EC: 0,
+            data: result
         });
     },
 

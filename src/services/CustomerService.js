@@ -27,8 +27,24 @@ const createCustomerArrayService = async(arr) => {
         return null;
     }
 }
-const getAllCustomerService = async() => {
+const getAllCustomerService = async(limit, page) => {
+    try {
+        let result = null;
+        if (limit && page) {
 
+            let offset = (page - 1) * limit;
+
+            result = await Customer.find({}).skip(offset).limit(limit).exec();
+        } else {
+            result = await Customer.find({});
+        }
+
+        return result
+
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
 }
 
 const putUpdateCustomerService = async(id, name, email, address) => {
