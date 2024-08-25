@@ -44,8 +44,11 @@ app.use('/v1/api/', apiRoutes);
         console.log('Connected successfully to server');
 
         const db = client.db(dbName);
-        const collection = db.collection('documents');
+        const collection = db.collection('customers');
 
+        //collection.insertOne({ "name": "Hoi Dan IT" })
+        let a = await collection.findOne({ address: "hcm" })
+        console.log(">>> find = ", a)
 
         //Test connection
 
