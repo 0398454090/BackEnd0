@@ -29,7 +29,7 @@ app.use('/v1/api/', apiRoutes);
 (async() => {
     try {
         //using mongoose
-        //await connection();
+        await connection();
 
         //Using mongodb driver
 
@@ -46,7 +46,26 @@ app.use('/v1/api/', apiRoutes);
         const db = client.db(dbName);
         const collection = db.collection('customers');
 
-        //collection.insertOne({ "name": "Hoi Dan IT" })
+        // {
+        //     id: 1,
+        //     province: hcm,
+        //     country: {
+        //         name: 'VietNam',
+        //         code: 10000
+        //     }
+        // }, {
+        //     id: 2,
+        //     province: 'hanoi',
+        //     country: {
+        //         name: 'VietNam',
+        //         code: 10000
+        //     }
+        // }
+
+        collection.insertOne({
+            "name": "Hoi Dan IT",
+            address: [1, 2]
+        })
         let a = await collection.findOne({ address: "hcm" })
         console.log(">>> find = ", a)
 
