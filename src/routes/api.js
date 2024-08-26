@@ -1,11 +1,13 @@
 const express = require('express');
 
 const routerAPI = express.Router();
-
+//User
 const { getUsersApi, postCreateUserAPI, postUpdateUser, deleteUsersAPI, portUploadSingleFileApi, portUploadMultipleFilesApi } = require('../controllers/apiController')
-
-
+    //Customer
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomers } = require('../controllers/customerControler')
+    //Projects
+const { postCreateProject } = require('../controllers/projectController');
+
 
 routerAPI.get('/users', getUsersApi);
 routerAPI.post('/users', postCreateUserAPI);
@@ -23,6 +25,9 @@ routerAPI.get('/customers', getAllCustomer);
 routerAPI.put('/customers', putUpdateCustomer);
 routerAPI.delete('/customers', deleteACustomer);
 routerAPI.delete('/customers-many', deleteArrayCustomers);
+
+//////////////////// Tao list project //////////////////////////
+routerAPI.post('/project', postCreateProject);
 
 routerAPI.get('/info', (req, res) => {
     console.log(">>> check query: ", req.query)
