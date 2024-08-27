@@ -1,5 +1,7 @@
-const { postCreateProject } = require('../controllers/projectController');
+const { default: aqp } = require('api-query-params');
+const { postCreateProject, getAllProject } = require('../controllers/projectController');
 const Project = require('../models/project');
+const { restart } = require('nodemon');
 
 module.exports = {
     createProject: async(data) => {
@@ -9,7 +11,7 @@ module.exports = {
         }
 
         if (data.type === "ADD-USERS") {
-            console.log("check data", data)
+
             let myProject = await Project.findById(data.projectId).exec();
 
             for (let i = 0; i < data.usersArr.length; i++) {
@@ -17,11 +19,25 @@ module.exports = {
             }
 
             let newResult = await myProject.save();
-
-            console.log(myProject)
             return newResult;
         }
 
         return null;
+    },
+    getProject: async(queryString) => {
+        const page = queryString.page;
+
+        const { filter, limit, population } = aqp(queryString);
+        console.log("before", filter);
+        delete filter.page;
+        let offset = (page - 1) * limit;
+        console.log("after", filter);
+        result = await Project.find(filter)
+            .populate(population)
+            .skip(offset)
+            .limit(limit)
+            .exec();
+
+        return result;
     }
 }

@@ -6,7 +6,7 @@ const { getUsersApi, postCreateUserAPI, postUpdateUser, deleteUsersAPI, portUplo
     //Customer
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomers } = require('../controllers/customerControler')
     //Projects
-const { postCreateProject } = require('../controllers/projectController');
+const { postCreateProject, getAllProject } = require('../controllers/projectController');
 
 
 routerAPI.get('/users', getUsersApi);
@@ -27,7 +27,10 @@ routerAPI.delete('/customers', deleteACustomer);
 routerAPI.delete('/customers-many', deleteArrayCustomers);
 
 //////////////////// Tao list project //////////////////////////
-routerAPI.post('/project', postCreateProject);
+routerAPI.post('/projects', postCreateProject);
+routerAPI.get('/projects', getAllProject);
+
+
 
 routerAPI.get('/info', (req, res) => {
     console.log(">>> check query: ", req.query)
