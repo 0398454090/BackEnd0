@@ -21,6 +21,16 @@ module.exports = {
             let newResult = await myProject.save();
             return newResult;
         }
+        if (data.type === "REMOVE-USERS") {
+            let myProject = await Project.findById(data.projectId).exec();
+
+            for (let i = 0; i < data.usersArr.length; i++) {
+                myProject.usersInfor.pull(data.usersArr[i]);
+            }
+
+            let newResult = await myProject.save();
+            return newResult;
+        }
 
         return null;
     },
@@ -39,5 +49,17 @@ module.exports = {
             .exec();
 
         return result;
-    }
+    },
+
+    putUpdateProjectService: async(data) => {
+
+        let result = await Project.updateOne({ _id: data.id }, {...data });
+        return result;
+
+    },
+
+    deleteAProjectService: async(id) => {
+        let result = await Project.deleteById(id);
+        return result
+    },
 }

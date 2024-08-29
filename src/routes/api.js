@@ -6,7 +6,7 @@ const { getUsersApi, postCreateUserAPI, postUpdateUser, deleteUsersAPI, portUplo
     //Customer
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomers } = require('../controllers/customerControler')
     //Projects
-const { postCreateProject, getAllProject } = require('../controllers/projectController');
+const { postCreateProject, getAllProject, putUpdateProject, deleteAProjects } = require('../controllers/projectController');
 
 
 routerAPI.get('/users', getUsersApi);
@@ -29,7 +29,8 @@ routerAPI.delete('/customers-many', deleteArrayCustomers);
 //////////////////// Tao list project //////////////////////////
 routerAPI.post('/projects', postCreateProject);
 routerAPI.get('/projects', getAllProject);
-
+routerAPI.put('/projects', putUpdateProject);
+routerAPI.delete('/projects', deleteAProjects);
 
 
 routerAPI.get('/info', (req, res) => {
