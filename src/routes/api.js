@@ -7,7 +7,8 @@ const { getUsersApi, postCreateUserAPI, postUpdateUser, deleteUsersAPI, portUplo
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomers } = require('../controllers/customerControler')
     //Projects
 const { postCreateProject, getAllProject, putUpdateProject, deleteAProjects } = require('../controllers/projectController');
-
+//Tasks
+const { postCreateTasks, getAllTask, putUpdateTasks, deleteATasks } = require('../controllers/tasksController');
 
 routerAPI.get('/users', getUsersApi);
 routerAPI.post('/users', postCreateUserAPI);
@@ -31,6 +32,14 @@ routerAPI.post('/projects', postCreateProject);
 routerAPI.get('/projects', getAllProject);
 routerAPI.put('/projects', putUpdateProject);
 routerAPI.delete('/projects', deleteAProjects);
+
+
+//////////////////// Tao list task //////////////////////////
+routerAPI.post('/tasks', postCreateTasks);
+routerAPI.get('/tasks', getAllTask);
+routerAPI.put('/tasks', putUpdateTasks);
+routerAPI.delete('/tasks', deleteATasks);
+
 
 
 routerAPI.get('/info', (req, res) => {
